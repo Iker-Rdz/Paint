@@ -25,7 +25,7 @@ def square(start, end):
 #Se define la función para hacer el cuadrado
 
 
-def circle(start, end):
+def dcircle(start, end):
     "Draw circle from start to end."
     up()
     goto(start.x, start.y)
@@ -33,16 +33,7 @@ def circle(start, end):
     begin_fill()
     radi = (end.x - start.x)/2 #se define el radio
     diam = end.x - start.x #se define el diametro
-    cx = 0
-    cy = 0 #Se definen los cambios en "x" y "y"
-    for count in range(0, diam + 1, 0.5): #se crea un ciclo que abarca toda la trayectoria de la media circunferencia superior
-	cx = count #se le asigna al cambio en x el valor del contador
-	cy = (radi - (cx ** 2)) ** 0.5 #se asigna el valor del cambio en y con base en la fórmula del círculo
-	goto(start.x + cx, start.y + cy) #se hace el desplazamiento a por la media circunferencia
-    for count in range(0, diam + 1, 0.5): #se repite el proceso pero para la media circunferencia inferior
-	cx = count
-	cy = (radi - (cx ** 2)) ** 0.5
-	goto(end.x - cx, end.y - cy) #aquí está el cambio, en vez de empezar en el inicio se va al final, y los cambios son negativos
+    circle(radi)
     end_fill()
 
 
@@ -108,7 +99,7 @@ onkey(lambda: color('violet'), 'V') #este es el color agregado
 
 onkey(lambda: store('shape', line), 'l') #Se definen las teclas para cambiar de figuras y las figuras
 onkey(lambda: store('shape', square), 's')
-onkey(lambda: store('shape', circle), 'c')
+onkey(lambda: store('shape', dcircle), 'c')
 onkey(lambda: store('shape', rectangle), 'r')
 onkey(lambda: store('shape', triangle), 't')
 done() #Fin del programa
